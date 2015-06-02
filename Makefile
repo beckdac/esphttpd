@@ -17,15 +17,15 @@ BUILD_BASE	= build
 FW_BASE		= firmware
 
 # Base directory for the compiler
-XTENSA_TOOLS_ROOT ?= /opt/Espressif/crosstool-NG/builds/xtensa-lx106-elf/bin
+XTENSA_TOOLS_ROOT ?= /home/Espressif/esp-open-sdk/xtensa-lx106-elf/bin
 
 #Extra Tensilica includes from the ESS VM
 SDK_EXTRA_INCLUDES ?= /opt/Espressif/include
 SDK_EXTRA_LIBS ?= /opt/Espressif/arch/lib
 
 # base directory of the ESP8266 SDK package, absolute
-SDK_ROOT	?= /opt/Espressif/ESP8266_SDK/
-SDK_VERSION	?= 1.0.0
+SDK_ROOT	?= /home/Espressif/esp-open-sdk/
+SDK_VERSION	?= 1.1.0
 SDK_BASE	?= $(SDK_ROOT)esp_iot_sdk_v$(SDK_VERSION)/
 
 # Hardware info
@@ -120,7 +120,7 @@ FW_FILE_1_ARGS	= -bo $@ -bs .text -bs .data -bs .rodata -bc -ec
 FW_FILE_2	= 0x40000
 FW_FILE_2_ARGS	= -es .irom0.text $@ -ec
 OTA_FW_FILE_1	= user1
-OTA_FW_FILE_2	= user2
+OTA_FW_FILE_1	= user1
 WEB_FW_FILE	= website
 
 #Intermediate files for User1.bin and User2.bin
