@@ -14,7 +14,7 @@
 #include "ets_sys.h"
 #include "osapi.h"
 #include "httpd.h"
-#include "io.h"
+#include "relay.h"
 #include "httpdespfs.h"
 #include "cgi.h"
 #include "cgiwifi.h"
@@ -52,13 +52,15 @@ should be placed above the URLs they protect.
 */
 HttpdBuiltInUrl builtInUrls[]={
 	{"/", cgiRedirect, "/index.tpl"},
-	{"/flash.bin", cgiReadFlash, NULL},
-	{"/led.tpl", cgiEspFsTemplate, tplLed},
 	{"/index.tpl", cgiEspFsTemplate, tplMain},
-	{"/led.cgi", cgiLed, NULL},
+	{"/flash.bin", cgiReadFlash, NULL},
 	{"/flashraw.cgi", cgiUploadRaw, NULL},
 	{"/flashapp.cgi", cgiUpgradeRaw, NULL},
 	{"/getappver.cgi", cgiGetAppVer, NULL},
+
+    // relay control handling
+	{"/relay.cgi", cgiRelay, NULL},
+	{"/relay.tpl", cgiEspFsTemplate, tplRelay},
 
 	//Routines to make the /wifi URL and everything beneath it work.
 
@@ -80,7 +82,7 @@ HttpdBuiltInUrl builtInUrls[]={
 //Main routine. Initialize stdout, the I/O and the webserver and we're done.
 void user_init(void) {
 	stdoutInit();
-	ioInit();
+	relayInit();
 	httpdInit(builtInUrls, 80);
 	os_printf("\nReady\n");
 	os_printf("\nCurrent Boot Mode is: %d\n", system_upgrade_userbin_check());
