@@ -3,8 +3,8 @@
 
 #include "httpd.h"
 
-int cgiLed(HttpdConnData *connData);
-int tplLed(HttpdConnData *connData, char *token, void **arg);
+int cgiRelay(HttpdConnData *connData);
+int tplRelay(HttpdConnData *connData, char *token, void **arg);
 int tplMain(HttpdConnData *connData, char *token, void **arg);
 
 #endif
